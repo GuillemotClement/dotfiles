@@ -90,6 +90,27 @@ if [ -d "$DOTFILES_DIR/gnome" ]; then
 fi
 
 # ============================================================================
+# nvim 
+# ============================================================================
+if [ -d "$DOTFILES_DIR/nvim" ]; then 
+    echo -e "\n${BLUE}[Neovim]${NC}"
+
+        # Supprime l'ancien dossier ou lien
+    if [ -e "$HOME/.config/nvim" ] || [ -L "$HOME/.config/nvim" ]; then
+        if [ ! -L "$HOME/.config/nvim" ]; then
+            echo -e "${YELLOW}⚠ Sauvegarde de l'ancienne config: ~/.config/nvim → ~/.config/nvim.backup${NC}"
+            mv "$HOME/.config/nvim" "$HOME/.config/nvim.backup"
+        else
+            rm "$HOME/.config/nvim"
+        fi
+    fi
+    
+    # Crée le lien vers le dossier entier
+    ln -s "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
+    echo -e "${GREEN}✓ Lien créé: ~/.config/nvim → $DOTFILES_DIR/nvim${NC}"
+fi
+
+# ============================================================================
 # FINALISATION
 # ============================================================================
 echo -e "\n${GREEN}╔════════════════════════════════════════╗${NC}"

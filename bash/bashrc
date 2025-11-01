@@ -42,9 +42,9 @@ parse_git_branch() {
     if [ -n "$branch" ]; then
         # Vérifie s'il y a des modifications
         if [[ -n $(git status -s 2>/dev/null) ]]; then
-            echo " \033[0;33m($branch*)\033[0m"
+            echo " ($branch*)"
         else
-            echo " \033[0;32m($branch)\033[0m"
+            echo " ($branch)"
         fi
     fi
 }
@@ -70,7 +70,7 @@ command_status() {
 # - Branche git (si dans un repo)
 # - $ ou # selon les privilèges
 
-PS1='$([ $? -eq 0 ] && echo "\[\033[0;32m\]✓\[\033[0m\]" || echo "\[\033[0;31m\]✗\[\033[0m\]") \[\033[0;36m\]\u@\h\[\033[0m\]:\[\033[0;34m\]\w\[\033[0m\]$(parse_git_branch)\n\$ '
+PS1='$([ $? -eq 0 ] && echo "\[\033[0;32m\]✓\[\033[0m\]" || echo "\[\033[0;31m\]✗\[\033[0m\]") \[\033[0;36m\]\u@\h\[\033[0m\]:\[\033[0;34m\]\w\[\033[0m\]\[\033[0;33m\]$(parse_git_branch)\[\033[0m\]\n\$ '
 # ============================================================================
 # ACTIVATION DE LA COMPLÉTION
 # ============================================================================
