@@ -18,7 +18,7 @@ return {
         typescript = { "prettier" },
         typescriptreact = { "prettier" },
         -- PHP 
-        php = [ "php_cs_fixer" ],
+        php = { "php_cs_fixer" },
         -- SQL 
         sql = { "sql_formatter" },
         elm = { "elm_format" },
