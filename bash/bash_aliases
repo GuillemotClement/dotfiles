@@ -1,0 +1,87 @@
+# ~/.bash_aliases
+# Alias utiles pour bash
+
+# ============================================================================
+# NAVIGATION ET LISTAGE
+# ============================================================================
+alias ls='ls --color=auto'
+alias ll='ls -lh'
+alias la='ls -lAh'
+alias l='ls -CF'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+# ============================================================================
+# SÉCURITÉ
+# ============================================================================
+alias rm='rm -i'     # Demande confirmation avant suppression
+alias cp='cp -i'     # Demande confirmation avant écrasement
+alias mv='mv -i'     # Demande confirmation avant écrasement
+alias ln='ln -i'     # Demande confirmation avant écrasement
+
+# ============================================================================
+# RACCOURCIS UTILES
+# ============================================================================
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias h='history'
+alias c='clear'
+alias q='exit'
+
+# ============================================================================
+# SYSTÈME - FEDORA
+# ============================================================================
+alias update='sudo dnf update'
+alias upgrade='sudo dnf upgrade'
+alias install='sudo dnf install'
+alias remove='sudo dnf remove'
+alias search='dnf search'
+alias autoremove='sudo dnf autoremove'
+
+# ============================================================================
+# GIT
+# ============================================================================
+alias g='git'
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
+alias gp='git push'
+alias gl='git log --oneline --graph --decorate'
+alias gd='git diff'
+alias gco='git checkout'
+alias gb='git branch'
+
+# ============================================================================
+# VSCODIUM
+# ============================================================================
+alias code='flatpak run com.vscodium.codium'
+
+# ============================================================================
+# UTILITAIRES
+# ============================================================================
+alias df='df -h'     # Affiche l'espace disque en format lisible
+alias du='du -h'     # Affiche la taille des dossiers
+alias free='free -h' # Affiche la RAM en format lisible
+alias psg='ps aux | grep -v grep | grep -i -e VSZ -e' # Recherche un processus
+alias mkdir='mkdir -pv' # Crée les parents si nécessaire et verbose
+
+# ============================================================================
+# RÉSEAUX
+# ============================================================================
+alias ports='netstat -tulanp'
+alias myip='curl ifconfig.me'  # Affiche ton IP publique
+
+# ============================================================================
+# DÉVELOPPEMENT
+# ============================================================================
+alias py='python3'
+alias pip='pip3'
+alias serve='python3 -m http.server'  # Serveur HTTP rapide sur port 8000
+
+# ============================================================================
+# DOTFILES
+# ============================================================================
+alias dotfiles='cd ~/dotfiles'
+alias edotfiles='code ~/dotfiles'

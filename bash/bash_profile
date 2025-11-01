@@ -1,0 +1,12 @@
+# ~/.bash_profile
+# Exécuté pour les shells de connexion
+
+# Source le bashrc si il existe
+if [ -f ~/.bashrc ]; then
+    . ~/.bashrc
+fi
+
+# Ajoute ~/.local/bin au PATH si ce n'est pas déjà fait
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi

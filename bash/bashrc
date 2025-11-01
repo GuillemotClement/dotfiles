@@ -1,0 +1,115 @@
+# Configuration Bash pour Fedora
+
+# Si non interactif, on sort
+[[ $- != *i* ]] && return
+
+# ============================================================================
+# HISTORIQUE
+# ============================================================================
+HISTSIZE=10000
+HISTFILESIZE=20000
+HISTCONTROL=ignoreboth:erasedups
+shopt -s histappend
+
+# ============================================================================
+# OPTIONS DU SHELL
+# ============================================================================
+shopt -s checkwinsize  # Met à jour LINES et COLUMNS après chaque commande
+shopt -s cdspell       # Corrige les petites erreurs de frappe dans cd
+shopt -s dirspell      # Corrige les erreurs dans l'autocomplétion
+shopt -s globstar      # ** pour recherche récursive
+
+# ============================================================================
+# COULEURS
+# ============================================================================
+# Définition des couleurs pour le prompt
+RED='\[\033[0;31m\]'
+GREEN='\[\033[0;32m\]'
+YELLOW='\[\033[0;33m\]'
+BLUE='\[\033[0;34m\]'
+PURPLE='\[\033[0;35m\]'
+CYAN='\[\033[0;36m\]'
+WHITE='\[\033[0;37m\]'
+BOLD='\[\033[1m\]'
+RESET='\[\033[0m\]'
+
+# ============================================================================
+# FONCTION POUR AFFICHER LA BRANCHE GIT
+# ============================================================================
+parse_git_branch() {
+    local branch
+    branch=$(git branch 2>/dev/null | grep '^*' | colrm 1 2)
+    if [ -n "$branch" ]; then
+        # Vérifie s'il y a des modifications
+        if [[ -n $(git status -s 2>/dev/null) ]]; then
+            echo " \033[0;33m($branch*)\033[0m"
+        else
+            echo " \033[0;32m($branch)\033[0m"
+        fi
+    fi
+}
+
+# ============================================================================
+# FONCTION POUR LE STATUS DE LA DERNIÈRE COMMANDE
+# ============================================================================
+command_status() {
+    if [ $? -eq 0 ]; then
+        echo "\033[0;32m✓\033[0m"
+    else
+        echo "\033[0;31m✗\033[0m"
+    fi
+}
+
+# ============================================================================
+# PROMPT PERSONNALISÉ
+# ============================================================================
+# Prompt avec:
+# - Status de la dernière commande (✓ ou ✗)
+# - User@host en cyan
+# - Chemin courant en bleu
+# - Branche git (si dans un repo)
+# - $ ou # selon les privilèges
+
+PS1='$([ $? -eq 0 ] && echo "\[\033[0;32m\]✓\[\033[0m\]" || echo "\[\033[0;31m\]✗\[\033[0m\]") \[\033[0;36m\]\u@\h\[\033[0m\]:\[\033[0;34m\]\w\[\033[0m\]$(parse_git_branch)\n\$ '
+# ============================================================================
+# ACTIVATION DE LA COMPLÉTION
+# ============================================================================
+if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+fi
+
+# ============================================================================
+# COULEURS POUR LS
+# ============================================================================
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+fi
+
+# ============================================================================
+# CHARGEMENT DES ALIAS
+# ============================================================================
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# ============================================================================
+# PATH - Ajoute des dossiers locaux
+# ============================================================================
+export PATH="$HOME/.local/bin:$PATH"
+
+# ============================================================================
+# VARIABLES D'ENVIRONNEMENT
+# ============================================================================
+export EDITOR=vim
+export VISUAL=vim
+
+# Pour de meilleures couleurs dans less
+export LESS_TERMCAP_mb=$'\E[1;31m'     # begin bold
+export LESS_TERMCAP_md=$'\E[1;36m'     # begin blink
+export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
+export LESS_TERMCAP_so=$'\E[01;44;33m' # begin reverse video
+export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
+export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
+export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
