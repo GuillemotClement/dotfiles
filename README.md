@@ -3,7 +3,7 @@
 ## Lien Symbolique 
 Le lien symbolique permet de lier un fichier définis dans un repo, pour l'appliquer dans un système. 
 
-Par exemple, dans ce repo, on définis des configuration pour différents outils. 
+Par exemple, dans ce repo, on définis des configurations pour différents outils. 
 Je peux venir récupérer ce repo, le place dans mon folder de projet, et venir créer un lien symbolique, pour appliquer la configuration sur ma machine.
 
 Par exemple, je définis ma configuration `nvim` dans le repo `dotfile`, je créer mon lien symbolique, ce qui me permet d'utiliser cette configuration directement.
