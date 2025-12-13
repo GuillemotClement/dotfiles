@@ -33,11 +33,6 @@ ls -s /home/clement/workspaces/dotfiles/nvim/ ~/.config/nvim
 ```
 
 
-# Warning 
-
-The repo is not update, so don't us script. 
-
-For the moment, juste the Nvim and Ghostty config is valid. I've the flemme to deleted and purge the repo. Biz.
 
 
 
