@@ -25,7 +25,7 @@ ls -s <SOURCE> <DESTINATION>
 ```shell
 # emplacement du fichier de config 
 # ~/workspaces/dotfiles/nvim/ 
-# emplcement ou la config est placer 
+# emplacement ou la config est placer 
 # ~/.config/nvim 
 
 # créer le lien symbolique 
